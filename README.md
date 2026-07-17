@@ -16,7 +16,7 @@ World Graph
   ├── Regions
   ├── Mountains
   ├── Valleys
-  └── Rivers
+  └── Forests
   │
   ▼
 Fractal Noise

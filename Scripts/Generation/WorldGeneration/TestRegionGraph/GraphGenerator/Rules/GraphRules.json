@@ -18,7 +18,12 @@
 
       "GenerationRules": {
         "MinExtent": 5,
-        "MaxExtent": 5
+        "MaxExtent": 5,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1000.0,
+          "StandardDeviation": 200.0
+        }
       },
 
       "LinkRules": {

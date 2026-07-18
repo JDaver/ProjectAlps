@@ -7,7 +7,13 @@ public class RegionNode
     public string Name { get; set; }
 
     public int Extent { get; set; }
+
+    public float Elevation { get; set; }
+
+    public bool isStart { get; set; }
      
+    public bool isEnd { get; set; }
+
     public HashSet<RegionNode> Neighbours { get; set; }
 
 
@@ -15,7 +21,7 @@ public class RegionNode
     {
         Id = id;
         Name = name;
-
+        
         Neighbours = new HashSet<RegionNode>();
     }
 }

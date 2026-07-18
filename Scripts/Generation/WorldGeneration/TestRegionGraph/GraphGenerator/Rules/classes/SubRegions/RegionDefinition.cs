@@ -6,6 +6,8 @@ public class RegionDefinition
 
     public string Name { get; set; }
 
+    public GenerationRules GenerationRules { get; set; }
+
     public OccurrenceRules OccurrenceRules { get; set; }
 
     public LinkRules LinkRules { get; set; }

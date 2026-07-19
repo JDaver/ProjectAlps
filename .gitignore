@@ -6,6 +6,9 @@
 *.cs.uid
 Scenes/
 
+#git
+*.gitattributes
+.editorconfig
 
 # C# / .NET specific
 bin/

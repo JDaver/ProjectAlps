@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Copy JSON files to output directory -->
+  <ItemGroup>
+    <None Update="../../Generation/WorldGeneration/WorldArchetype/Rules/WorldArchetypeRules.json" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <!-- Link source files -->
+  <ItemGroup>
+    <Compile Include="../../Generation/WorldGeneration/WorldArchetype/ArchetypeGeneration/ArchetypeLoader.cs" />
+    <Compile Include="../../Generation/WorldGeneration/WorldArchetype/Rules/classes/WorldArchetype.cs" />
+    <Compile Include="../../Generation/WorldGeneration/WorldArchetype/Rules/classes/WorldArchetypeRulesTDO.cs" />
+    <Compile Include="../../Generation/WorldGeneration/WorldArchetype/Rules/classes/RegionRules/RegionRules.cs" />
+    <Compile Include="../../Generation/WorldGeneration/WorldArchetype/Rules/classes/ConnettivityRules/ConnettivityRules.cs" />
+    <Compile Include="../../Generation/WorldGeneration/WorldArchetype/Rules/classes/ElevationProfile/ElevationProfile.cs" />
+  </ItemGroup>
+
+</Project>

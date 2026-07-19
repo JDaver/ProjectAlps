@@ -1,0 +1,75 @@
+{
+  "WorldArchetypes": [
+    {
+      "Id": 1,
+      "Name": "VerticalClimb",
+
+      "RegionRules": {
+        "MinRegions": 5,
+        "MaxRegions": 8
+      },
+
+      "ConnettivityRules": {
+        "MinLinksPerNode": 1,
+        "MaxLinksPerNode": 2,
+
+        "BranchingPreference": 0.2,
+
+        "AllowLoops": false
+      },
+
+      "ElevationProfile": {
+        "Type": "Ascending",
+        "Weight": 0.8
+      }
+    },
+
+    {
+      "Id": 2,
+      "Name": "MountainRange",
+
+      "RegionRules": {
+        "MinRegions": 6,
+        "MaxRegions": 10
+      },
+
+      "ConnettivityRules": {
+        "MinLinksPerNode": 1,
+        "MaxLinksPerNode": 3,
+
+        "BranchingPreference": 0.5,
+
+        "AllowLoops": true
+      },
+
+      "ElevationProfile": {
+        "Type": "RandomWalk",
+        "Weight": 0.7
+      }
+    },
+
+    {
+      "Id": 3,
+      "Name": "Plateau",
+
+      "RegionRules": {
+        "MinRegions": 4,
+        "MaxRegions": 7
+      },
+
+      "ConnettivityRules": {
+        "MinLinksPerNode": 2,
+        "MaxLinksPerNode": 4,
+
+        "BranchingPreference": 0.8,
+
+        "AllowLoops": true
+      },
+
+      "ElevationProfile": {
+        "Type": "Stable",
+        "Weight": 0.9
+      }
+    }
+  ]
+}

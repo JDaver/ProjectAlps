@@ -6,6 +6,7 @@
 *.cs.uid
 Scenes/
 
+
 # C# / .NET specific
 bin/
 obj/
@@ -22,3 +23,6 @@ deepseek_dock/
 .DS_Store
 Thumbs.db
 *.log
+
+# Prototype / temporary tests
+Scripts/Generation/TestMeshBuilder

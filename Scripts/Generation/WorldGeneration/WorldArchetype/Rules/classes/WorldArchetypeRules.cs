@@ -1,9 +1,7 @@
 using System;
-// using ProjectAlps.Generation.WorldGeneration.RegionGraph;
+namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
 
-namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype
-{
-    public class WorldArchetype
+    public class WorldArchetypeRules
     {
         public int Id { get; set; }
 
@@ -15,4 +13,3 @@ namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype
 
         public RegionRules RegionRules { get; set;}
     }
-}

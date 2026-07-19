@@ -1,10 +1,11 @@
 using System.IO;
 using System.Text.Json;
-using ProjectAlps.Generation.WorldGeneration.WorldArchetype;
+using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
+namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
 
 public class ArchetypeLoader
 {
-    public WorldArchetype[] Types { get; private set; }
+    public WorldArchetypeRules[] Types { get; private set; }
 
 
     public ArchetypeLoader()

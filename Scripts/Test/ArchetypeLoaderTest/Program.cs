@@ -1,5 +1,7 @@
 using System;
-using ProjectAlps.Generation.WorldGeneration.WorldArchetype;
+using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
+using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
+using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
 
 class Program
 {
@@ -7,54 +9,41 @@ class Program
     {
         ArchetypeLoader loader = new();
 
-        int index = 1;
+        ArchetypeInstance Instance = new ArchetypeInstance(loader, 231);
 
-        foreach (WorldArchetype archetype in loader.Types)
-        {
             Console.WriteLine("==============================");
-            Console.WriteLine($"ARCHETYPE {index}");
+            Console.WriteLine($"ARCHETYPE {Instance.Id}");
             Console.WriteLine("==============================");
 
-            Console.WriteLine($"Id: {archetype.Id}");
-            Console.WriteLine($"Name: {archetype.Name}");
+            Console.WriteLine($"Name: {Instance.Name}");
 
             Console.WriteLine("\nRegion Rules:");
             Console.WriteLine(
-                $"Min Regions: {archetype.RegionRules.MinRegions}"
-            );
-            Console.WriteLine(
-                $"Max Regions: {archetype.RegionRules.MaxRegions}"
+                $"Number of Regions: {Instance.NumberRegions}"
             );
 
             Console.WriteLine("\nGraph Rules:");
             Console.WriteLine(
-                $"Min Links: {archetype.ConnettivityRules.MinLinksPerNode}"
+                $"Min Links: {Instance.Connettivity.MinLinksPerNode}"
             );
             Console.WriteLine(
-                $"Max Links: {archetype.ConnettivityRules.MaxLinksPerNode}"
+                $"Max Links: {Instance.Connettivity.MaxLinksPerNode}"
             );
             Console.WriteLine(
-                $"Branching Preference: {archetype.ConnettivityRules.BranchingPreferences}"
+                $"Branching Preference: {Instance.Connettivity.BranchingPreference}"
             );
             Console.WriteLine(
-                $"Allow Loops: {archetype.ConnettivityRules.AllowLoops}"
+                $"Allow Loops: {Instance.Connettivity.AllowLoops}"
             );
 
             Console.WriteLine("\nElevation Rules:");
             Console.WriteLine(
-                $"Type: {archetype.ElevationProfile.Type}"
+                $"Type: {Instance.ElevationProfile.Type}"
             );
             Console.WriteLine(
-                $"Weight: {archetype.ElevationProfile.Weight}"
+                $"Weight: {Instance.ElevationProfile.Weight}"
             );
 
             Console.WriteLine();
-
-            index++;
-        }
-
-        Console.WriteLine(
-            $"Total archetypes loaded: {loader.Types.Length}"
-        );
     }
 }

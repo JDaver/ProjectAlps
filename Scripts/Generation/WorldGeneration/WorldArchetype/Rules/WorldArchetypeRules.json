@@ -1,7 +1,7 @@
 {
   "WorldArchetypes": [
     {
-      "Id": 1,
+      "Id": 0,
       "Name": "VerticalClimb",
 
       "RegionRules": {
@@ -25,7 +25,7 @@
     },
 
     {
-      "Id": 2,
+      "Id": 1,
       "Name": "MountainRange",
 
       "RegionRules": {
@@ -49,7 +49,7 @@
     },
 
     {
-      "Id": 3,
+      "Id": 2,
       "Name": "Plateau",
 
       "RegionRules": {

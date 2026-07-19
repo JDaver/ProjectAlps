@@ -1,5 +1,9 @@
+using System;
+using Distribution;
 
-public class GammaDistribution : IDistribution
+namespace Distribution
+{
+    public class GammaDistribution : IDistribution
 {
     public float Mean { get; private set; }
 
@@ -72,4 +76,5 @@ private float SampleNormal(Random rng)
            MathF.Cos(2f * MathF.PI * u2);
 }
 
+}
 }

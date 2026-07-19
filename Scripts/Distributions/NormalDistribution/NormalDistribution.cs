@@ -1,4 +1,10 @@
-public class NormalDistribution : IDistribution{
+using System;
+using Distribution;
+
+namespace Distribution
+{
+    public class NormalDistribution : IDistribution
+    {
     
     // f(x) = (1 / (σ * sqrt(2π))) * e^(-(x - μ)^2 / (2σ^2))
 
@@ -25,4 +31,5 @@ public class NormalDistribution : IDistribution{
     return z * StandardDeviation + Mean;
 
     }
+}
 }

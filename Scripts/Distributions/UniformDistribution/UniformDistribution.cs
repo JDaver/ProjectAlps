@@ -1,4 +1,9 @@
-public class UniformDistribution : IDistribution
+using System;
+using Distribution;
+
+namespace Distribution
+{
+    public class UniformDistribution : IDistribution
 {
     // f(x) = 1/(b - a) for a <= x <= b, 0 otherwise
     
@@ -26,6 +31,7 @@ public class UniformDistribution : IDistribution
 
         return rng.NextSingle() * (Max - Min) + Min;
     }
+}
 }
 
 

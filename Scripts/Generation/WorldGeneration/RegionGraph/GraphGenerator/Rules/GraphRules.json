@@ -1,43 +1,5 @@
 {
-  "MainRegion": {
-    "MinRegions": 10,
-    "MaxRegions": 20,
-    "StartingRegion": 1,
-    "EndingRegion": 1
-  },
-
   "SubRegions": [
-    {
-      "Id": 0,
-      "Name": "MainVillage",
-
-      "OccurrenceRules": {
-        "Min": 1,
-        "Max": 1
-      },
-
-      "GenerationRules": {
-        "MinExtent": 5,
-        "MaxExtent": 5,
-        "Elevation": {
-          "DistributionType": "Normal",
-          "Mean": 1000.0,
-          "StandardDeviation": 200.0
-        }
-      },
-
-      "LinkRules": {
-        "MinLinks": 1,
-        "MaxLinks": 3,
-        "Neighbours": [1, 2, 3, 4, 6]
-      },
-
-      "PropertiesRules": {
-        "category": "village",
-        "isStart": true
-      }
-    },
-
     {
       "Id": 1,
       "Name": "NakedValley",
@@ -49,18 +11,23 @@
 
       "GenerationRules": {
         "MinExtent": 20,
-        "MaxExtent": 30
+        "MaxExtent": 30,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1200.0,
+          "StandardDeviation": 100.0
+        }
       },
 
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 2,
-        "Neighbours": [0, 3, 4, 5]
+        "Neighbours": [3, 4, 5]
       },
 
       "PropertiesRules": {
         "category": "valley",
-        "isStart": false,
+        "isStart": true,
         "isEnd": true
       }
     },
@@ -76,19 +43,24 @@
 
       "GenerationRules": {
         "MinExtent": 10,
-        "MaxExtent": 20
+        "MaxExtent": 20,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1600.0,
+          "StandardDeviation": 150.0
+        }
       },
 
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 2,
-        "Neighbours": [0, 4, 5, 6]
+        "Neighbours": [4, 5, 6]
       },
 
       "PropertiesRules": {
         "category": "tundra",
-        "isStart": false,
-        "isEnd": false
+        "isStart": true,
+        "isEnd": true
       }
     },
 
@@ -103,13 +75,18 @@
 
       "GenerationRules": {
         "MinExtent": 40,
-        "MaxExtent": 40
+        "MaxExtent": 40,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 900.0,
+          "StandardDeviation": 100.0
+        }
       },
 
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [0, 1, 4, 5, 6]
+        "Neighbours": [1, 4, 5]
       },
 
       "PropertiesRules": {
@@ -130,13 +107,18 @@
 
       "GenerationRules": {
         "MinExtent": 40,
-        "MaxExtent": 50
+        "MaxExtent": 50,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1500.0,
+          "StandardDeviation": 100.0
+        }
       },
 
       "LinkRules": {
         "MinLinks": 2,
         "MaxLinks": 4,
-        "Neighbours": [0, 1, 2, 3, 5, 6]
+        "Neighbours": [1, 2, 3, 5, 6]
       },
 
       "PropertiesRules": {
@@ -157,7 +139,12 @@
 
       "GenerationRules": {
         "MinExtent": 20,
-        "MaxExtent": 30
+        "MaxExtent": 30,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1200.0,
+          "StandardDeviation": 150.0
+        }
       },
 
       "LinkRules": {
@@ -184,13 +171,18 @@
 
       "GenerationRules": {
         "MinExtent": 20,
-        "MaxExtent": 25
+        "MaxExtent": 25,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 2000.0,
+          "StandardDeviation": 150.0
+        }
       },
 
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [0, 1, 2, 3, 4, 5]
+        "Neighbours": [2, 4, 5]
       },
 
       "PropertiesRules": {

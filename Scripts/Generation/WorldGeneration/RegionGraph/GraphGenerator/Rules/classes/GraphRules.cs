@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 
-public class GraphRules
+namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
 {
-    public MainRegionRules MainRegion { get; set; } = new();
+    public class GraphRules
+    {
 
     public List<RegionDefinition> SubRegions { get; set; } = new();
 
@@ -62,4 +64,5 @@ public class GraphRules
             }
            
     }
+}
 }

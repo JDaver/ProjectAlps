@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-
-public class RegionGraph
+namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
+{
+    public class RegionGraph
 {
     public Dictionary<int, RegionNode> Nodes { get; set; }
     public int Count { get;set;}
@@ -47,4 +48,6 @@ public class RegionGraph
             }
         }
     }
+    }
+}
 }

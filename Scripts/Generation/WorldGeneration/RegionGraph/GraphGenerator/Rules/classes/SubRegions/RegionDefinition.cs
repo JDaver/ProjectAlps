@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 
-public class RegionDefinition
+namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
+{
+    public class RegionDefinition
 {
     public int Id { get; set; }
 
@@ -13,6 +16,5 @@ public class RegionDefinition
     public LinkRules LinkRules { get; set; }
 
     public PropertiesRules PropertiesRules { get; set; }
-
-
+    }
 }

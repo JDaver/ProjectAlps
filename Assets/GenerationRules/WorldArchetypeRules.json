@@ -21,8 +21,8 @@
       "ElevationProfile": {
         "Type": "Ascending",
         "Function": "Quadratic",
-        "min": 900,
-        "max": 2500,
+        "Min": 900,
+        "Max": 2500,
         "Weight": 0.8
       }
     },
@@ -48,8 +48,8 @@
       "ElevationProfile": {
         "Type": "Cosinusoid",
         "Function": "Cosine",
-        "min": 700,
-        "max": 2500,
+        "Min": 700,
+        "Max": 2500,
         "Weight": 0.7
       }
     },
@@ -75,7 +75,7 @@
       "ElevationProfile": {
         "Type": "TanhCurve",
         "Function": "HyperbolicTan",
-        "min": 800,
+        "Min": 800,
         "max": 2400,
         "Weight": 0.9
       }

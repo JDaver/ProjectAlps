@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+
+  <!-- Reference main project -->
+  <ItemGroup>
+    <ProjectReference Include="../../Project_alps.csproj" />
+  </ItemGroup>
+
+
+  <!-- Copy generation JSON rules -->
+  <ItemGroup>
+    <None Include="../../Assets/GenerationRules/**/*.json"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+
+</Project>

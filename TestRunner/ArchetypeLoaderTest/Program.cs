@@ -2,6 +2,8 @@ using System;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
+// using ProjectAlps.Generation.WorldGeneration.RegionNodes.NodeLoader;
+// using ProjectAlps.Generation.WorldGeneration.RegionNodes.RegionNodeInstance;
 
 class Program
 {
@@ -9,7 +11,7 @@ class Program
     {
         ArchetypeLoader loader = new();
 
-        ArchetypeInstance Instance = new ArchetypeInstance(loader, 231);
+        ArchetypeInstance Instance = new ArchetypeInstance(loader, 23651);
 
             Console.WriteLine("==============================");
             Console.WriteLine($"ARCHETYPE {Instance.Id}");

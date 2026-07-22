@@ -1,7 +1,7 @@
 using System;
 using Distribution;
 
-namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
+namespace ProjectAlps.Generation.WorldGeneration.RegionNodes.Rules
 {
     public enum DistributionType
     {
@@ -20,4 +20,3 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
     }
 }
 
-}

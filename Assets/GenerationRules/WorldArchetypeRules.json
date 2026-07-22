@@ -20,13 +20,16 @@
 
       "ElevationProfile": {
         "Type": "Ascending",
+        "Function": "Quadratic",
+        "min": 900,
+        "max": 2500,
         "Weight": 0.8
       }
     },
 
     {
       "Id": 1,
-      "Name": "MountainRange",
+      "Name": "RollingHills",
 
       "RegionRules": {
         "MinRegions": 6,
@@ -43,7 +46,10 @@
       },
 
       "ElevationProfile": {
-        "Type": "RandomWalk",
+        "Type": "Cosinusoid",
+        "Function": "Cosine",
+        "min": 700,
+        "max": 2500,
         "Weight": 0.7
       }
     },
@@ -67,7 +73,10 @@
       },
 
       "ElevationProfile": {
-        "Type": "Stable",
+        "Type": "TanhCurve",
+        "Function": "HyperbolicTan",
+        "min": 800,
+        "max": 2400,
         "Weight": 0.9
       }
     }

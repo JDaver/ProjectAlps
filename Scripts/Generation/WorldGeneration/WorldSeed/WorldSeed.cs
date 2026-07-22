@@ -1,3 +1,5 @@
+using System;
+
 public class WorldSeed
 {
     public int Value { get; }

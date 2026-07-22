@@ -1,6 +1,6 @@
 using System;
 
-namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
+namespace ProjectAlps.Generation.WorldGeneration.RegionNodes.Rules
 {
     public class PropertiesRules
     {

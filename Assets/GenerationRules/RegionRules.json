@@ -2,70 +2,6 @@
   "SubRegions": [
     {
       "Id": 1,
-      "Name": "NakedValley",
-
-      "OccurrenceRules": {
-        "Min": 1,
-        "Max": 3
-      },
-
-      "GenerationRules": {
-        "MinExtent": 20,
-        "MaxExtent": 30,
-        "Elevation": {
-          "DistributionType": "Normal",
-          "Mean": 1200.0,
-          "StandardDeviation": 100.0
-        }
-      },
-
-      "LinkRules": {
-        "MinLinks": 1,
-        "MaxLinks": 2,
-        "Neighbours": [3, 4, 5]
-      },
-
-      "PropertiesRules": {
-        "category": "valley",
-        "isStart": true,
-        "isEnd": true
-      }
-    },
-
-    {
-      "Id": 2,
-      "Name": "AlpineTundra",
-
-      "OccurrenceRules": {
-        "Min": 0,
-        "Max": 2
-      },
-
-      "GenerationRules": {
-        "MinExtent": 10,
-        "MaxExtent": 20,
-        "Elevation": {
-          "DistributionType": "Normal",
-          "Mean": 1600.0,
-          "StandardDeviation": 150.0
-        }
-      },
-
-      "LinkRules": {
-        "MinLinks": 1,
-        "MaxLinks": 2,
-        "Neighbours": [4, 5, 6]
-      },
-
-      "PropertiesRules": {
-        "category": "tundra",
-        "isStart": true,
-        "isEnd": true
-      }
-    },
-
-    {
-      "Id": 3,
       "Name": "Forest1",
 
       "OccurrenceRules": {
@@ -86,12 +22,74 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [1, 4, 5]
+        "Neighbours": [2, 3, 4, 5]
       },
 
       "PropertiesRules": {
         "category": "forest",
         "isStart": false,
+        "isEnd": true
+      }
+    },
+    {
+      "Id": 2,
+      "Name": "Gorge",
+
+      "OccurrenceRules": {
+        "Min": 1,
+        "Max": 2
+      },
+
+      "GenerationRules": {
+        "MinExtent": 20,
+        "MaxExtent": 25,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1000.0,
+          "StandardDeviation": 100.0
+        }
+      },
+
+      "LinkRules": {
+        "MinLinks": 1,
+        "MaxLinks": 3,
+        "Neighbours": [1, 3, 4, 5]
+      },
+
+      "PropertiesRules": {
+        "category": "valley",
+        "isStart": false,
+        "isEnd": true
+      }
+    },
+    {
+      "Id": 3,
+      "Name": "NakedValley",
+
+      "OccurrenceRules": {
+        "Min": 1,
+        "Max": 3
+      },
+
+      "GenerationRules": {
+        "MinExtent": 20,
+        "MaxExtent": 30,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1200.0,
+          "StandardDeviation": 100.0
+        }
+      },
+
+      "LinkRules": {
+        "MinLinks": 1,
+        "MaxLinks": 2,
+        "Neighbours": [1, 2, 4, 5]
+      },
+
+      "PropertiesRules": {
+        "category": "valley",
+        "isStart": true,
         "isEnd": true
       }
     },
@@ -142,7 +140,7 @@
         "MaxExtent": 30,
         "Elevation": {
           "DistributionType": "Normal",
-          "Mean": 1200.0,
+          "Mean": 1500.0,
           "StandardDeviation": 150.0
         }
       },
@@ -150,7 +148,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 2,
-        "Neighbours": [1, 2, 3, 4, 6]
+        "Neighbours": [1, 2, 3, 4, 6, 7]
       },
 
       "PropertiesRules": {
@@ -162,6 +160,38 @@
 
     {
       "Id": 6,
+      "Name": "AlpineTundra",
+
+      "OccurrenceRules": {
+        "Min": 0,
+        "Max": 2
+      },
+
+      "GenerationRules": {
+        "MinExtent": 10,
+        "MaxExtent": 20,
+        "Elevation": {
+          "DistributionType": "Normal",
+          "Mean": 1900.0,
+          "StandardDeviation": 150.0
+        }
+      },
+
+      "LinkRules": {
+        "MinLinks": 1,
+        "MaxLinks": 2,
+        "Neighbours": [4, 5, 7]
+      },
+
+      "PropertiesRules": {
+        "category": "tundra",
+        "isStart": true,
+        "isEnd": true
+      }
+    },
+
+    {
+      "Id": 7,
       "Name": "AlpinePass",
 
       "OccurrenceRules": {
@@ -174,7 +204,7 @@
         "MaxExtent": 25,
         "Elevation": {
           "DistributionType": "Normal",
-          "Mean": 2000.0,
+          "Mean": 2500.0,
           "StandardDeviation": 150.0
         }
       },
@@ -182,7 +212,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [2, 4, 5]
+        "Neighbours": [5, 6]
       },
 
       "PropertiesRules": {

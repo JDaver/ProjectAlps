@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ProjectAlps.Generation.WorldGeneration.RegionGraph
+namespace ProjectAlps.Generation.WorldGeneration.RegionNodes.RegionNode
 {
     public class RegionNode
     {

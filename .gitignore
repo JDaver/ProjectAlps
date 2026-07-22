@@ -28,4 +28,4 @@ Thumbs.db
 *.log
 
 # Prototype / temporary tests
-Scripts/Generation/TestMeshBuilder
+Scripts/Generation/TestMeshBuilder/

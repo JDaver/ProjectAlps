@@ -1,6 +1,8 @@
 using System.IO;
 using System.Text.Json;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
+using ProjectAlps.Utils.PathManager;
+
 namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
 
 public class ArchetypeLoader
@@ -11,7 +13,7 @@ public class ArchetypeLoader
     public ArchetypeLoader()
     {
         string json = File.ReadAllText(
-            "../../Generation/WorldGeneration/WorldArchetype/Rules/WorldArchetypeRules.json"
+            PathManager.WorldArchetypeRules
         );
 
         WorldArchetypeRulesDTO data =

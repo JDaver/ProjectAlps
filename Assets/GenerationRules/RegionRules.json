@@ -45,7 +45,7 @@
         "MaxExtent": 25,
         "Elevation": {
           "DistributionType": "Normal",
-          "Mean": 1000.0,
+          "Mean": 1100.0,
           "StandardDeviation": 100.0
         }
       },
@@ -140,7 +140,7 @@
         "MaxExtent": 30,
         "Elevation": {
           "DistributionType": "Normal",
-          "Mean": 1500.0,
+          "Mean": 1700.0,
           "StandardDeviation": 150.0
         }
       },
@@ -204,7 +204,7 @@
         "MaxExtent": 25,
         "Elevation": {
           "DistributionType": "Normal",
-          "Mean": 2500.0,
+          "Mean": 2300.0,
           "StandardDeviation": 150.0
         }
       },

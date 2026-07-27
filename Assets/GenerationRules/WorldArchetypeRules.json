@@ -6,7 +6,7 @@
 
       "RegionRules": {
         "MinRegions": 5,
-        "MaxRegions": 8
+        "MaxRegions": 6
       },
 
       "ConnettivityRules": {
@@ -21,8 +21,8 @@
       "ElevationProfile": {
         "Type": "Ascending",
         "Function": "Quadratic",
-        "Min": 900,
-        "Max": 2500,
+        "Min": 800,
+        "Max": 2700,
         "Weight": 0.8
       }
     },
@@ -32,8 +32,8 @@
       "Name": "RollingHills",
 
       "RegionRules": {
-        "MinRegions": 6,
-        "MaxRegions": 10
+        "MinRegions": 5,
+        "MaxRegions": 8
       },
 
       "ConnettivityRules": {
@@ -59,7 +59,7 @@
       "Name": "Plateau",
 
       "RegionRules": {
-        "MinRegions": 4,
+        "MinRegions": 5,
         "MaxRegions": 7
       },
 
@@ -76,7 +76,7 @@
         "Type": "TanhCurve",
         "Function": "HyperbolicTan",
         "Min": 800,
-        "max": 2400,
+        "Max": 2500,
         "Weight": 0.9
       }
     }

@@ -2,16 +2,21 @@ using System;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
-// using ProjectAlps.Generation.WorldGeneration.RegionNodes.NodeLoader;
-// using ProjectAlps.Generation.WorldGeneration.RegionNodes.RegionNodeInstance;
+using ProjectAlps.Generation.WorldGeneration.SeedExporter;
+using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 
 class Program
 {
     static void Main()
     {
+        int seed = SeedTestExporter.Seed; 
         ArchetypeLoader loader = new();
 
-        ArchetypeInstance Instance = new ArchetypeInstance(loader, 23651);
+        NodeLoader nodeLoader = new();
+
+        ArchetypeInstance Instance = new ArchetypeInstance(loader,seed );
+
+        RegionNodesInstance regions = new RegionNodesInstance(seed,Instance, nodeLoader);
 
             Console.WriteLine("==============================");
             Console.WriteLine($"ARCHETYPE {Instance.Id}");
@@ -47,5 +52,112 @@ class Program
             );
 
             Console.WriteLine();
+
+              Console.WriteLine("Generated Regions:");
+
+            foreach(var region in regions.RegionsCollection)
+            {
+                RegionNode node = region.Value;
+
+                Console.WriteLine(
+                    $"ID: {node.Id} | Name: {node.Name}"
+                );
+            }
     }
 }
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.IO;
+// using System.Text.Json;
+// using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
+// using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
+// using ProjectAlps.Generation.WorldGeneration.RegionNodes;
+
+// public class WorldTestDTO
+// {
+//     public int Seed { get; set; }
+//     public int ArchetypeId { get; set; }
+//     public string ArchetypeName { get; set; }
+//     public List<RegionTestDTO> Regions { get; set; }
+// }
+
+// public class RegionTestDTO
+// {
+//     public int Id { get; set; }
+//     public string Name { get; set; }
+//     public float Elevation { get; set; }
+// }
+
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         ArchetypeLoader loader = new();
+//         NodeLoader nodeLoader = new();
+
+//         Random rng = new Random(12345);
+
+//         List<WorldTestDTO> worlds = new();
+
+//         int instances = 100;
+
+//         for(int i = 0; i < instances; i++)
+//         {
+//             int seed = rng.Next();
+
+//             ArchetypeInstance instance =
+//                 new ArchetypeInstance(loader, seed);
+
+//             RegionNodesInstance regions =
+//                 new RegionNodesInstance(
+//                     seed,
+//                     instance,
+//                     nodeLoader
+//                 );
+
+
+//             WorldTestDTO world = new()
+//             {
+//                 Seed = seed,
+//                 ArchetypeId = instance.Id,
+//                 ArchetypeName = instance.Name,
+//                 Regions = new List<RegionTestDTO>()
+//             };
+
+
+//             foreach(var region in regions.RegionsCollection.Values)
+//             {
+//                 world.Regions.Add(new RegionTestDTO
+//                 {
+//                     Id = region.Id,
+//                     Name = region.Name,
+//                     Elevation = region.Elevation
+//                 });
+//             }
+
+
+//             worlds.Add(world);
+//         }
+
+
+//         string json = JsonSerializer.Serialize(
+//             worlds,
+//             new JsonSerializerOptions
+//             {
+//                 WriteIndented = true
+//             }
+//         );
+
+
+//         File.WriteAllText(
+//             "GeneratedWorldsTest.json",
+//             json
+//         );
+
+
+//         Console.WriteLine("GeneratedWorldsTest.json created");
+//     }
+// }

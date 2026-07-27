@@ -1,3 +1,4 @@
+namespace ProjectAlps.Generation.WorldGeneration.SeedExporter;
 public static class SeedTestExporter{
-    public static readonly WorldSeed Seed = new WorldSeed(1234);
+    public static readonly int Seed = 310002248;
 }

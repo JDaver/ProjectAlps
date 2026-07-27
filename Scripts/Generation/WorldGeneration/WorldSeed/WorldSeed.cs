@@ -11,11 +11,11 @@ public class WorldSeed
     }
 
 
-    public int GetModuleSeed(string moduleName)
-    {
-        return HashCode.Combine(
-            Value,
-            moduleName
-        );
-    }
+    // public int GetModuleSeed(string moduleName)
+    // {
+    //     return HashCode.Combine(
+    //         Value,
+    //         moduleName
+    //     );
+    // }
 }

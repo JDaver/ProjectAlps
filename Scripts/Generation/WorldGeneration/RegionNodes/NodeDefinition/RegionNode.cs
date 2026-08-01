@@ -28,5 +28,11 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes
             Neighbours = new HashSet<RegionNode>();
             Elevation = elevation;
         }
+
+        public void AddNeighbour(RegionNode currentNeighbour)
+        {
+            Neighbours.Add(currentNeighbour);
+            currentNeighbour.Neighbours.Add(this);
+        }
     }
 }

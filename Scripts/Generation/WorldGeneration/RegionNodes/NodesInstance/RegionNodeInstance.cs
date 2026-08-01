@@ -6,6 +6,7 @@ using ProjectAlps.Generation.WorldGeneration.RegionNodes.Rules;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
 using ProjectAlps.Functions;
+using Distribution;
 
 namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
 
@@ -13,18 +14,20 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
     {
         public Dictionary<int,RegionNode> RegionsCollection {get; private set; } = new Dictionary<int, RegionNode>(); 
         private int[] ElevationTargets;
+        private int currentSeed;
 
         public RegionNodesInstance(int seed,ArchetypeInstance ArchetypeInstance, NodeLoader loader){
+            currentSeed = seed;
             int numberOfRegions = ArchetypeInstance.NumberRegions;
             ElevationProfile ElevationArchetype = ArchetypeInstance.ElevationProfile;
         
-            EvaluateAltitudeProfile(seed,ElevationArchetype,numberOfRegions);
+            EvaluateAltitudeProfile(ElevationArchetype,numberOfRegions);
             GenerateNodesCollection(loader);
         }
 
-        private void EvaluateAltitudeProfile(int seed,ElevationProfile currentElevationArchetype, int numberOfRegions)
+        private void EvaluateAltitudeProfile(ElevationProfile currentElevationArchetype, int numberOfRegions)
         {
-            Random rng = new Random(seed);
+            Random rng = new Random(currentSeed);
             string function = currentElevationArchetype.Function;
             int minRange = currentElevationArchetype.Min;
             int maxRange = currentElevationArchetype.Max;
@@ -78,12 +81,16 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
                     }
                 }
 
+                NormalDistribution AltitudeDistribution = new (rules.GenerationRules.Elevation.Mean, rules.GenerationRules.Elevation.StandardDeviation);
+                int sampleAltitude = (int)AltitudeDistribution.Sample(currentSeed+i);
+
                 RegionNode candidate = new RegionNode(
                     rules.Id,
-                    rules.Name
+                    rules.Name,
+                    sampleAltitude
                 );
 
-                RegionsCollection.Add(i, candidate);
+                RegionsCollection.Add(sampleAltitude, candidate);
 
                 // Counter occurences update
                 if (regionOccurrences.ContainsKey(candidate.Id))

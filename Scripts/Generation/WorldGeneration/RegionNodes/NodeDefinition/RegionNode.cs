@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace ProjectAlps.Generation.WorldGeneration.RegionNodes
 {
     public class RegionNode
@@ -20,12 +21,12 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes
         public HashSet<RegionNode> Neighbours { get; set; }
 
 
-        public RegionNode(int id, string name)
+        public RegionNode(int id, string name, int elevation)
         {
             Id = id;
             Name = name;
-            
             Neighbours = new HashSet<RegionNode>();
+            Elevation = elevation;
         }
     }
 }

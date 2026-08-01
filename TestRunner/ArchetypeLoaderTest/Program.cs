@@ -60,7 +60,7 @@ class Program
                 RegionNode node = region.Value;
 
                 Console.WriteLine(
-                    $"ID: {node.Id} | Name: {node.Name}"
+                    $"ID: {node.Id} | Name: {node.Name} | Elevation: {node.Elevation}"
                 );
             }
     }

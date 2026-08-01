@@ -14,11 +14,11 @@ namespace Distribution
 
     public float Variance => StandardDeviation * StandardDeviation;
 
-        public NormalDistribution(float mean, float standardDeviation)
-    {
-        Mean = mean;
-        StandardDeviation = standardDeviation;
-    }
+    public NormalDistribution(float mean, float standardDeviation)
+        {
+            Mean = mean;
+            StandardDeviation = standardDeviation;
+        }
 
     public float Sample(int seed){
     Random rng = new Random(seed);

@@ -5,8 +5,8 @@
       "Name": "VerticalClimb",
 
       "RegionRules": {
-        "MinRegions": 5,
-        "MaxRegions": 6
+        "MinRegions": 6,
+        "MaxRegions": 9
       },
 
       "ConnettivityRules": {

@@ -22,7 +22,8 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
             GenerateNodesCollection(loader);
         }
 
-        private void EvaluateAltitudeProfile(int seed,ElevationProfile currentElevationArchetype, int numberOfRegions){
+        private void EvaluateAltitudeProfile(int seed,ElevationProfile currentElevationArchetype, int numberOfRegions)
+        {
             Random rng = new Random(seed);
             string function = currentElevationArchetype.Function;
             int minRange = currentElevationArchetype.Min;
@@ -42,38 +43,57 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
         }
 
         private void GenerateNodesCollection(NodeLoader loader)
-{
-    HashSet<int> usedRegionTypes = new HashSet<int>();
-
-    for(int i = 0; i < ElevationTargets.Length; i++)
-    {
-        int target = ElevationTargets[i];
-
-        int closestKey = loader.RegionTypes.Keys
-            .MinBy(k => Math.Abs(k - target));
-
-        SubRegionRules rules = loader.RegionTypes[closestKey];
-
-        int candidateId = rules.Id;
-
-        if(usedRegionTypes.Contains(candidateId) &&
-           usedRegionTypes.Count < loader.RegionTypes.Count)
         {
-            candidateId = loader.RegionTypes.Keys
-                .Where(k => !usedRegionTypes.Contains(loader.RegionTypes[k].Id))
-                .MinBy(k => Math.Abs(k - target));
+            Dictionary<int, int> regionOccurrences = new Dictionary<int, int>();
+            int maxTargetDistance = 400;
 
-            rules = loader.RegionTypes[candidateId];
+            for (int i = 0; i < ElevationTargets.Length; i++)
+            {
+                int target = ElevationTargets[i];
+
+                // Find RegionType with closest mean altitude to target
+                int closestKey = loader.RegionTypes.Keys
+                    .MinBy(k => Math.Abs(k - target));
+
+                SubRegionRules rules = loader.RegionTypes[closestKey];
+                int candidateId = rules.Id;
+
+                // Find alternatives if already used in range of maxTargetDistance
+                if (regionOccurrences.ContainsKey(candidateId))
+                {
+                    var candidates = loader.RegionTypes.Keys
+                        .Where(k =>
+                            Math.Abs(k - target) <= maxTargetDistance)
+                        .OrderBy(k =>
+                            regionOccurrences.GetValueOrDefault(loader.RegionTypes[k].Id, 0))
+                        .ThenBy(k =>
+                            Math.Abs(k - target));
+
+                    int? selectedKey = candidates.FirstOrDefault();
+
+                    // if a suitable alternative is found, use it; otherwise, keep the original candidate
+                    if (selectedKey != null && loader.RegionTypes.ContainsKey(selectedKey.Value))
+                    {
+                        rules = loader.RegionTypes[selectedKey.Value];
+                    }
+                }
+
+                RegionNode candidate = new RegionNode(
+                    rules.Id,
+                    rules.Name
+                );
+
+                RegionsCollection.Add(i, candidate);
+
+                // Counter occurences update
+                if (regionOccurrences.ContainsKey(candidate.Id))
+                {
+                    regionOccurrences[candidate.Id]++;
+                }
+                else
+                {
+                    regionOccurrences.Add(candidate.Id, 1);
+                }
+            }
         }
-
-
-        RegionNode candidate = new RegionNode(
-            rules.Id,
-            rules.Name
-        );
-
-        RegionsCollection.Add(i, candidate);
-        usedRegionTypes.Add(candidate.Id);
-    }
-}
     }

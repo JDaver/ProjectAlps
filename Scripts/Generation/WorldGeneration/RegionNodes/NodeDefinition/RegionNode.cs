@@ -8,6 +8,8 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes
     {
         public int Id { get; set; }
 
+        public int RegionTypeId {get; set;}
+
         public string Name { get; set; }
 
         public int Extent { get; set; }
@@ -21,9 +23,10 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes
         public HashSet<RegionNode> Neighbours { get; set; }
 
 
-        public RegionNode(int id, string name, int elevation)
+        public RegionNode(int id, int regionTypeId, string name, int elevation)
         {
             Id = id;
+            RegionTypeId = regionTypeId;
             Name = name;
             Neighbours = new HashSet<RegionNode>();
             Elevation = elevation;

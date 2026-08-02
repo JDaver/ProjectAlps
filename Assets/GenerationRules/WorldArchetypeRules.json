@@ -13,7 +13,7 @@
         "MinLinksPerNode": 1,
         "MaxLinksPerNode": 2,
 
-        "BranchingPreference": 0.2,
+        "BranchingPreference": 0.3,
 
         "AllowLoops": false
       },
@@ -65,7 +65,7 @@
 
       "ConnettivityRules": {
         "MinLinksPerNode": 2,
-        "MaxLinksPerNode": 4,
+        "MaxLinksPerNode": 3,
 
         "BranchingPreference": 0.8,
 

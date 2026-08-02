@@ -15,6 +15,7 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
         public Dictionary<int,RegionNode> RegionsCollection {get; private set; } = new Dictionary<int, RegionNode>(); 
         private int[] ElevationTargets;
         private int currentSeed;
+        private int nodeIdCounter = 0;
 
         public RegionNodesInstance(int seed,ArchetypeInstance ArchetypeInstance, NodeLoader loader){
             currentSeed = seed;
@@ -85,12 +86,13 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
                 int sampleAltitude = (int)AltitudeDistribution.Sample(currentSeed+i);
 
                 RegionNode candidate = new RegionNode(
+                    nodeIdCounter++,
                     rules.Id,
                     rules.Name,
                     sampleAltitude
                 );
 
-                RegionsCollection.Add(sampleAltitude, candidate);
+                RegionsCollection.Add(candidate.Id, candidate);
 
                 // Counter occurences update
                 if (regionOccurrences.ContainsKey(candidate.Id))

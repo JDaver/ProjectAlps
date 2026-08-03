@@ -29,7 +29,7 @@ class Program
         );
 
 
-        graphInstance.GenerateGraph(instance);
+        graphInstance.GenerateGraph(instance,nodeLoader);
 
 
         Console.WriteLine("==============================");

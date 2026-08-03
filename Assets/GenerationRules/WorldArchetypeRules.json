@@ -15,7 +15,8 @@
 
         "BranchingPreference": 0.3,
 
-        "AllowLoops": false
+        "AllowLoops": false,
+        "LoopsProbability": 0
       },
 
       "ElevationProfile": {
@@ -40,9 +41,10 @@
         "MinLinksPerNode": 1,
         "MaxLinksPerNode": 3,
 
-        "BranchingPreference": 0.5,
+        "BranchingPreference": 0.6,
 
-        "AllowLoops": true
+        "AllowLoops": true,
+        "LoopsProbability": 0.2
       },
 
       "ElevationProfile": {
@@ -67,9 +69,10 @@
         "MinLinksPerNode": 2,
         "MaxLinksPerNode": 3,
 
-        "BranchingPreference": 0.8,
+        "BranchingPreference": 0.7,
 
-        "AllowLoops": true
+        "AllowLoops": true,
+        "LoopsProbability": 0.4
       },
 
       "ElevationProfile": {

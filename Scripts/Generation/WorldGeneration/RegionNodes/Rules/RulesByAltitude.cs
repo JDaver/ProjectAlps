@@ -4,21 +4,23 @@ using System.Collections.Generic;
 namespace ProjectAlps.Generation.WorldGeneration.RegionNodes.Rules;
 public class RulesByAltitude
 {
-    private Dictionary<int, List<int>> RulesIndex { get; } = new();
+    private readonly SortedDictionary<int, List<int>> rulesIndex = new();
 
     public void Add(int altitude, int ruleId)
     {
-        if (!RulesIndex.TryGetValue(altitude, out var rules))
+        if (!rulesIndex.TryGetValue(altitude, out var list))
         {
-            rules = new List<int>();
-            RulesIndex[altitude] = rules;
+            list = new List<int>();
+            rulesIndex[altitude] = list;
         }
 
-        rules.Add(ruleId);
+        list.Add(ruleId);
     }
+
+    public IEnumerable<int> Altitudes => rulesIndex.Keys;
 
     public List<int> Get(int altitude)
     {
-        return RulesIndex[altitude];
+        return rulesIndex[altitude];
     }
 }

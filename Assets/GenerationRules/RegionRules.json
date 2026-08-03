@@ -1,7 +1,7 @@
 {
   "SubRegions": [
     {
-      "Id": 1,
+      "RegionTypeId": 1,
       "Name": "Forest1",
 
       "OccurrenceRules": {
@@ -22,7 +22,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [2, 3, 4, 5]
+        "Neighbours": [1, 2, 3, 4, 5]
       },
 
       "PropertiesRules": {
@@ -32,7 +32,7 @@
       }
     },
     {
-      "Id": 2,
+      "RegionTypeId": 2,
       "Name": "Gorge",
 
       "OccurrenceRules": {
@@ -63,7 +63,7 @@
       }
     },
     {
-      "Id": 3,
+      "RegionTypeId": 3,
       "Name": "NakedValley",
 
       "OccurrenceRules": {
@@ -84,7 +84,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 2,
-        "Neighbours": [1, 2, 4, 5]
+        "Neighbours": [1, 2, 3, 4, 5]
       },
 
       "PropertiesRules": {
@@ -95,7 +95,7 @@
     },
 
     {
-      "Id": 4,
+      "RegionTypeId": 4,
       "Name": "Forest2",
 
       "OccurrenceRules": {
@@ -116,7 +116,7 @@
       "LinkRules": {
         "MinLinks": 2,
         "MaxLinks": 4,
-        "Neighbours": [1, 2, 3, 5, 6]
+        "Neighbours": [1, 2, 3, 4, 5, 6]
       },
 
       "PropertiesRules": {
@@ -127,7 +127,7 @@
     },
 
     {
-      "Id": 5,
+      "RegionTypeId": 5,
       "Name": "Canyon",
 
       "OccurrenceRules": {
@@ -159,7 +159,7 @@
     },
 
     {
-      "Id": 6,
+      "RegionTypeId": 6,
       "Name": "AlpineTundra",
 
       "OccurrenceRules": {
@@ -180,7 +180,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 2,
-        "Neighbours": [4, 5, 7]
+        "Neighbours": [4, 5, 6, 7]
       },
 
       "PropertiesRules": {
@@ -191,7 +191,7 @@
     },
 
     {
-      "Id": 7,
+      "RegionTypeId": 7,
       "Name": "AlpinePass",
 
       "OccurrenceRules": {
@@ -212,7 +212,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [5, 6]
+        "Neighbours": [5, 6, 7]
       },
 
       "PropertiesRules": {

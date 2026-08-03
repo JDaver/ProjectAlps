@@ -5,7 +5,7 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes.Rules
 {
    public class SubRegionRules{
 
-        public int Id { get; set; }
+        public int RegionTypeId { get; set; }
 
         public string Name { get; set; }
 

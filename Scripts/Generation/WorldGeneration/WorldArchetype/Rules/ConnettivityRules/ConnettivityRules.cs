@@ -9,4 +9,6 @@ namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
         public float BranchingPreference { get; set; }
 
         public bool AllowLoops { get; set; }
+
+        public float LoopsProbability { get; set; }
     }

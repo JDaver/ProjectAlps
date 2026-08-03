@@ -44,64 +44,49 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
                 ElevationTargets[i] = (int)(minRange +  y * (maxRange - minRange));
                 currentStep = currentStep + steps;
             }
-        }
+                }
 
         private void GenerateNodesCollection(NodeLoader loader)
         {
-            Dictionary<int, int> regionOccurrences = new Dictionary<int, int>();
+            Dictionary<int, int> regionOccurrences = new();
             int maxTargetDistance = 400;
 
             for (int i = 0; i < ElevationTargets.Length; i++)
             {
                 int target = ElevationTargets[i];
 
-                // Find RegionType with closest mean altitude to target
-                int closestKey = loader.RegionTypes.Keys
-                    .MinBy(k => Math.Abs(k - target));
+                SubRegionRules rules = loader.FindClosestRule(
+                    target,
+                    regionOccurrences,
+                    maxTargetDistance
+                );
 
-                SubRegionRules rules = loader.RegionTypes[closestKey];
-                int candidateId = rules.Id;
 
-                // Find alternatives if already used in range of maxTargetDistance
-                if (regionOccurrences.ContainsKey(candidateId))
-                {
-                    var candidates = loader.RegionTypes.Keys
-                        .Where(k =>
-                            Math.Abs(k - target) <= maxTargetDistance)
-                        .OrderBy(k =>
-                            regionOccurrences.GetValueOrDefault(loader.RegionTypes[k].Id, 0))
-                        .ThenBy(k =>
-                            Math.Abs(k - target));
+                NormalDistribution altitudeDistribution = new(
+                    rules.GenerationRules.Elevation.Mean,
+                    rules.GenerationRules.Elevation.StandardDeviation
+                );
 
-                    int? selectedKey = candidates.FirstOrDefault();
+                int sampleAltitude = (int)altitudeDistribution.Sample(currentSeed + i);
 
-                    // if a suitable alternative is found, use it; otherwise, keep the original candidate
-                    if (selectedKey != null && loader.RegionTypes.ContainsKey(selectedKey.Value))
-                    {
-                        rules = loader.RegionTypes[selectedKey.Value];
-                    }
-                }
-
-                NormalDistribution AltitudeDistribution = new (rules.GenerationRules.Elevation.Mean, rules.GenerationRules.Elevation.StandardDeviation);
-                int sampleAltitude = (int)AltitudeDistribution.Sample(currentSeed+i);
 
                 RegionNode candidate = new RegionNode(
                     nodeIdCounter++,
-                    rules.Id,
+                    rules.RegionTypeId,
                     rules.Name,
                     sampleAltitude
                 );
 
+
                 RegionsCollection.Add(candidate.Id, candidate);
 
-                // Counter occurences update
-                if (regionOccurrences.ContainsKey(candidate.Id))
+                if(regionOccurrences.ContainsKey(candidate.RegionTypeId))
                 {
-                    regionOccurrences[candidate.Id]++;
+                    regionOccurrences[candidate.RegionTypeId]++;
                 }
                 else
                 {
-                    regionOccurrences.Add(candidate.Id, 1);
+                    regionOccurrences.Add(candidate.RegionTypeId, 1);
                 }
             }
         }

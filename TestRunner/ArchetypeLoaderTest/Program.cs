@@ -5,6 +5,8 @@ using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
 using ProjectAlps.Generation.WorldGeneration.SeedExporter;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 using ProjectAlps.Generation.WorldGeneration.RegionGraph;
+using ProjectAlps.Generation.WorldGeneration.DistanceMatrix;
+using ProjectAlps.Generation.WorldGeneration.DistanceMatrix;
 
 class Program
 {
@@ -36,6 +38,7 @@ class Program
         Console.WriteLine("GENERATED GRAPH");
         Console.WriteLine("==============================");
 
+        DistanceMatrix matrix = new DistanceMatrix(graphInstance.Graph);
 
         foreach(var nodeEntry in graphInstance.Graph.Nodes)
         {

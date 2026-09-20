@@ -692,4 +692,4 @@ When enabled, loops are added afterward as additional edges between already conn
 
 ---
 
-→ Graph to R² Spatial Representation
+→ [Graph to R² Spatial Representation](../graph-to-r2.md)

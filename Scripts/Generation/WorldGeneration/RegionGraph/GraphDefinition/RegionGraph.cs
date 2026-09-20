@@ -20,5 +20,6 @@ public class RegionGraph
     public void AddEdge(RegionNode a, RegionNode b)
     {
         a.AddNeighbour(b);
+         b.AddNeighbour(a);
     }
 }

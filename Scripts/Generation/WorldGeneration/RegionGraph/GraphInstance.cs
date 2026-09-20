@@ -16,6 +16,7 @@ public class GraphInstance
     private Random rng;
     private Queue<RegionNode> queue;
     private float maxElevationDistance {get; set;}
+    private const int ClusterDepth = 2;
 
     public GraphInstance(RegionNodesInstance nodesInstance, int seed)
     {
@@ -24,6 +25,8 @@ public class GraphInstance
         rng = new Random(seed);
 
         NodesInstance = nodesInstance;
+        NodesInstance = nodesInstance;
+
         availableNodes = nodesInstance.RegionsCollection
         .Values
         .GroupBy(n => n.RegionTypeId)
@@ -67,7 +70,11 @@ public class GraphInstance
             if(Graph.Nodes.Count >= numberOfRegions)
                 break;
 
-            AvailableNode candidate = PickHighestScoreNode(current);
+            AvailableNode? candidate =
+    PickHighestScoreNode(
+        current,
+        nodeLoader
+    );
 
             if(candidate == null)
                 break;
@@ -85,12 +92,17 @@ public class GraphInstance
              
         }
         
-        //TODO if archetype allows, generates loops
-        if(archetypeInstance.Connettivity.AllowLoops)
-        {
-            Console.WriteLine("AllowLoops True!");
-            GenerateLoops(startNode,nodeLoader, loopsProbability);
-        }
+        CompleteGraph(nodeLoader);
+
+if(archetypeInstance.Connettivity.AllowLoops)
+{
+    Console.WriteLine("AllowLoops True!");
+    GenerateLoops(
+        startNode,
+        nodeLoader,
+        loopsProbability
+    );
+}
             
     }
 
@@ -116,7 +128,7 @@ public class GraphInstance
                 current.Neighbours.ToList();
 
 
-            // prova tutte le coppie di vicini
+            // try for every couple of neighbours
             for(int i = 0; i < neighbours.Count; i++)
             {
                 for(int j = i + 1; j < neighbours.Count; j++)
@@ -170,12 +182,52 @@ public class GraphInstance
    
 
     //Pick HightestScore
-    private AvailableNode PickHighestScoreNode( RegionNode current)
-    {
-        return availableNodes
-            .MaxBy(candidate =>
-                CalculateScore(current, candidate));
-    }
+  private AvailableNode? PickHighestScoreNode(
+    RegionNode current,
+    NodeLoader nodeLoader)
+{
+    return availableNodes
+        .Where(candidate =>
+            IsCompatible(
+                current,
+                candidate.Peek(),
+                nodeLoader
+            ))
+        .MaxBy(candidate =>
+            CalculateScore(
+                current,
+                candidate
+            ));
+}
+
+private bool IsCompatible(
+    RegionNode current,
+    RegionNode candidate,
+    NodeLoader nodeLoader)
+{
+    SubRegionRules currentRules =
+        nodeLoader.RegionTypes[
+            current.RegionTypeId
+        ];
+
+    SubRegionRules candidateRules =
+        nodeLoader.RegionTypes[
+            candidate.RegionTypeId
+        ];
+
+    bool currentAllowsCandidate =
+        currentRules.LinkRules.Neighbours.Contains(
+            candidate.RegionTypeId
+        );
+
+    bool candidateAllowsCurrent =
+        candidateRules.LinkRules.Neighbours.Contains(
+            current.RegionTypeId
+        );
+
+    return currentAllowsCandidate &&
+           candidateAllowsCurrent;
+}
 
     private float CalculateScore(
     RegionNode current,
@@ -197,20 +249,46 @@ public class GraphInstance
         float cluster =
             CalculateClusterPenalty(current, candidate);
 
-
-        return distanceScore * availability;
+        return distanceScore * availability * cluster;
     }
 
-    private float CalculateClusterPenalty(
+private float CalculateClusterPenalty(
     RegionNode current,
     AvailableNode candidate)
-    {
-       int sameTypeNeighbours = current.Neighbours
-        .Count(n => n.RegionTypeId == candidate.RegionTypeId);
+{
+    int candidateTypeId = candidate.Peek().RegionTypeId;
 
-        return 1f / (1f + sameTypeNeighbours);
+    Queue<(RegionNode node, int depth)> bfsQueue = new();
+    HashSet<RegionNode> visited = new();
+
+    bfsQueue.Enqueue((current, 0));
+    visited.Add(current);
+
+    float concentration = 0f;
+
+    while (bfsQueue.Count > 0)
+    {
+        var (node, depth) = bfsQueue.Dequeue();
+
+        if (depth >= ClusterDepth)
+            continue;
+
+        foreach (RegionNode neighbour in node.Neighbours)
+        {
+            if (!visited.Add(neighbour))
+                continue;
+
+            int neighbourDepth = depth + 1;
+
+            if (neighbour.RegionTypeId == candidateTypeId)
+                concentration += 1f / neighbourDepth;
+
+            bfsQueue.Enqueue((neighbour, neighbourDepth));
+        }
     }
 
+    return 1f / (1f + concentration);
+}
   
     
     //general Utils
@@ -266,4 +344,55 @@ public class GraphInstance
             availableNodes.Remove(available);
         }
     }
+
+    private void CompleteGraph(NodeLoader nodeLoader)
+{
+    while(availableNodes.Count > 0)
+    {
+        AvailableNode? bestCandidate = null;
+        RegionNode? bestParent = null;
+        float bestScore = float.MinValue;
+
+        foreach(AvailableNode candidate in availableNodes)
+        {
+            RegionNode node = candidate.Peek();
+
+            foreach(RegionNode existing in Graph.Nodes.Values)
+            {
+                if(!IsCompatible(
+                    existing,
+                    node,
+                    nodeLoader))
+                {
+                    continue;
+                }
+
+                float score =
+                    CalculateScore(
+                        existing,
+                        candidate
+                    );
+
+                if(score > bestScore)
+                {
+                    bestScore = score;
+                    bestCandidate = candidate;
+                    bestParent = existing;
+                }
+            }
+        }
+
+        if(bestCandidate == null || bestParent == null)
+            break;
+
+        RegionNode newNode =
+            bestCandidate.Consume();
+
+        Graph.AddNode(newNode);
+        Graph.AddEdge(bestParent, newNode);
+
+        ConsumeNode(bestCandidate);
+    }
 }
+}
+

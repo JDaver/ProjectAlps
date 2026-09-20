@@ -147,7 +147,7 @@
 
       "LinkRules": {
         "MinLinks": 1,
-        "MaxLinks": 2,
+        "MaxLinks": 3,
         "Neighbours": [1, 2, 3, 4, 6, 7]
       },
 
@@ -179,7 +179,7 @@
 
       "LinkRules": {
         "MinLinks": 1,
-        "MaxLinks": 2,
+        "MaxLinks": 3,
         "Neighbours": [4, 5, 6, 7]
       },
 
@@ -212,7 +212,7 @@
       "LinkRules": {
         "MinLinks": 1,
         "MaxLinks": 3,
-        "Neighbours": [5, 6, 7]
+        "Neighbours": [5, 6]
       },
 
       "PropertiesRules": {

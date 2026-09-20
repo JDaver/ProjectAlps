@@ -72,7 +72,7 @@
         "BranchingPreference": 0.7,
 
         "AllowLoops": true,
-        "LoopsProbability": 0.4
+        "LoopsProbability": 0.9
       },
 
       "ElevationProfile": {

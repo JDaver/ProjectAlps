@@ -6,7 +6,6 @@ using ProjectAlps.Generation.WorldGeneration.SeedExporter;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 using ProjectAlps.Generation.WorldGeneration.RegionGraph;
 using ProjectAlps.Generation.WorldGeneration.DistanceMatrix;
-using ProjectAlps.Generation.WorldGeneration.DistanceMatrix;
 
 class Program
 {

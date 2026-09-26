@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 using ProjectAlps.Generation.WorldGeneration.SpatialRep.ScoreSystem;
 
-namespace ProjectAlps.Generation.WorldGeneration.DistanceMatrix;
-
 public class DistanceMatrix{
 
     public int[,] Matrix { get; private set; }
-    private ScoreList DistanceScore { get; } = new ScoreList();
+    public ScoreList DistanceScore { get; } = new ScoreList();
 
     public DistanceMatrix(RegionGraphType graph)
     {

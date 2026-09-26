@@ -1,11 +1,13 @@
 using System;
+using System.Numerics;
+using System.Globalization;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
 using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Loader;
 using ProjectAlps.Generation.WorldGeneration.SeedExporter;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 using ProjectAlps.Generation.WorldGeneration.RegionGraph;
-using ProjectAlps.Generation.WorldGeneration.DistanceMatrix;
+using ProjectAlps.Generation.WorldGeneration.WorldMatrix;
 
 class Program
 {
@@ -68,5 +70,25 @@ class Program
             $"Total Nodes: {graphInstance.Graph.Nodes.Count}"
         );
         Console.WriteLine("==============================");
+
+        Console.WriteLine("==============================");
+        Console.WriteLine("EUCLIDEAN WORLD: ");
+        Console.WriteLine("==============================");
+
+        WorldMatrixInstance CurrentWorld = new WorldMatrixInstance(seed,graphInstance.Graph);
+        char Letter = (char)65;
+
+foreach (var pair in CurrentWorld.EuclideanWorld)
+{
+    RegionNode node = pair.Key;
+    Vector2 position = pair.Value;
+
+    Console.WriteLine(
+        $"{Letter}=({position.X.ToString("F2", CultureInfo.InvariantCulture)}," +
+        $"{position.Y.ToString("F2", CultureInfo.InvariantCulture)})"
+    );
+
+    Letter++;
+}
     }
 }

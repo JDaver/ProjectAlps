@@ -3,8 +3,8 @@ using System;
 namespace ProjectAlps.Generation.WorldGeneration.SpatialRep.ScoreSystem;
 
 public class ScoreList{
-    private ScoreNode? _head;
-    private ScoreNode? _tail;
+    public ScoreNode? _head;
+    public ScoreNode? _tail;
 
     public void Insert(RegionNode region, int score){
         ScoreNode current = new ScoreNode(region,score);

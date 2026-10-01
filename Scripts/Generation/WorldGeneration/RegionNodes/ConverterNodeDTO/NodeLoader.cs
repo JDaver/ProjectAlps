@@ -46,7 +46,7 @@ public class NodeLoader
     Dictionary<int, int> regionOccurrences,
     int maxTargetDistance)
 {
-    // 1. Trova tutte le regole abbastanza vicine
+
     var candidates = RulesByAltitude.Altitudes
         .Where(altitude =>
             Math.Abs(altitude - targetAltitude) <= maxTargetDistance)
@@ -64,9 +64,6 @@ public class NodeLoader
         })
         .ToList();
 
-    // 2. Se abbiamo candidati validi, scegli:
-    //    prima il meno utilizzato,
-    //    poi quello più vicino all'altitudine richiesta.
     if (candidates.Count > 0)
     {
         int selectedId = candidates
@@ -84,9 +81,6 @@ public class NodeLoader
         return RegionTypes[selectedId];
     }
 
-    // 3. Nessun candidato valido nel range:
-    //    cerchiamo tra TUTTE le regole quella più vicina
-    //    che abbia ancora capacità.
     var fallbackCandidates = RegionTypes
         .Where(pair =>
         {
@@ -103,8 +97,6 @@ public class NodeLoader
         .Select(pair => pair.Key)
         .ToList();
 
-    // 4. Se non esiste più nessuna regola disponibile,
-    //    la configurazione non può generare altri nodi.
     if (fallbackCandidates.Count == 0)
     {
         throw new InvalidOperationException(
@@ -112,8 +104,6 @@ public class NodeLoader
         );
     }
 
-    // 5. Fallback: scegli la regola disponibile
-    //    più vicina all'altitudine richiesta.
     int fallbackId = fallbackCandidates
         .OrderBy(id =>
             Math.Abs(

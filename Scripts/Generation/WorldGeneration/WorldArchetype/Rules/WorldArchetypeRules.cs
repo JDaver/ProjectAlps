@@ -12,4 +12,6 @@ namespace ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
         public ElevationProfile ElevationProfile { get; set; }
 
         public RegionRules RegionRules { get; set;}
+        
+        public GeometricRules GeometricRules { get; set; }
     }

@@ -16,6 +16,8 @@ public class ArchetypeInstance{
 
     public ElevationProfile ElevationProfile {get; private set;}
 
+    public GeometricRules GeometricRules {get; private set;}
+
     public ArchetypeInstance(ArchetypeLoader collection,int seed){
         Random rng = new(seed);
         //generate a number between 1 and 3
@@ -30,6 +32,7 @@ public class ArchetypeInstance{
 
         Connettivity = chosenArchetypeRule.ConnettivityRules;
         ElevationProfile = chosenArchetypeRule.ElevationProfile;
+        GeometricRules = chosenArchetypeRule.GeometricRules;
     }
 
     private int GetRandomInRange(int min, int max, Random rng){

@@ -12,7 +12,6 @@ public class GraphInstance
     public RegionGraph Graph { get; set; }
 
     private List<AvailableNode> availableNodes = new();
-    private RegionNodesInstance NodesInstance {get; set;}
     private Random rng;
     private Queue<RegionNode> queue;
     private float maxElevationDistance {get; set;}
@@ -24,8 +23,6 @@ public class GraphInstance
         
         rng = new Random(seed);
 
-        NodesInstance = nodesInstance;
-        NodesInstance = nodesInstance;
 
         availableNodes = nodesInstance.RegionsCollection
         .Values
@@ -71,10 +68,10 @@ public class GraphInstance
                 break;
 
             AvailableNode? candidate =
-    PickHighestScoreNode(
-        current,
-        nodeLoader
-    );
+            PickHighestScoreNode(
+                current,
+                nodeLoader
+            );
 
             if(candidate == null)
                 break;

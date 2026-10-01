@@ -1,21 +1,34 @@
 using RegionGraphType =
     ProjectAlps.Generation.WorldGeneration.RegionGraph.RegionGraph;
-    using System;
+
+using System;
 using System.Collections.Generic;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 using ProjectAlps.Generation.WorldGeneration.SpatialRep.ScoreSystem;
 
-public class DistanceMatrix{
-
+public class DistanceMatrix
+{
     public int[,] Matrix { get; private set; }
+
     public ScoreList DistanceScore { get; } = new ScoreList();
+
+    private Dictionary<int, int> nodeToIndex = new();
 
     public DistanceMatrix(RegionGraphType graph)
     {
         Matrix = new int[graph.Nodes.Count, graph.Nodes.Count];
 
+        int index = 0;
+
+        foreach (RegionNode node in graph.Nodes.Values)
+        {
+            nodeToIndex[node.Id] = index;
+            index++;
+        }
+
         BreadthFirstSearch(graph);
         AssignScore(graph);
+
         DistanceScore.Print();
     }
 
@@ -45,31 +58,34 @@ public class DistanceMatrix{
                 }
             }
 
+            int startIndex = nodeToIndex[startNode.Id];
+
             foreach (var pair in distances)
             {
-                Matrix[startNode.Id, pair.Key.Id] = pair.Value;
+                int neighbourIndex = nodeToIndex[pair.Key.Id];
+
+                Matrix[startIndex, neighbourIndex] = pair.Value;
             }
         }
     }
 
     private void AssignScore(RegionGraphType graph)
-{
-    int rows = Matrix.GetLength(0);
-    int columns = Matrix.GetLength(1);
-
-    for (int i = 0; i < rows; i++)
     {
+        int rows = Matrix.GetLength(0);
+        int columns = Matrix.GetLength(1);
 
-        RegionNode current = graph.Nodes[i];
-
-        int partialSum = 0;
-
-        for (int j = 0; j < columns; j++)
+        foreach (RegionNode current in graph.Nodes.Values)
         {
-            partialSum += Matrix[i, j];
-        }
+            int index = nodeToIndex[current.Id];
 
-        DistanceScore.Insert(current, partialSum);
+            int partialSum = 0;
+
+            for (int j = 0; j < columns; j++)
+            {
+                partialSum += Matrix[index, j];
+            }
+
+            DistanceScore.Insert(current, partialSum);
+        }
     }
-}
 }

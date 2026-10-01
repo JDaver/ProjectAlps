@@ -3,62 +3,88 @@ using System.Collections.Generic;
 using System.Numerics;
 using RegionGraphType =
     ProjectAlps.Generation.WorldGeneration.RegionGraph.RegionGraph;
-    using System;
+
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
+using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Rules;
 
 public class FruchtermanReingold
 {
     private readonly Random rng;
-    private float k;
 
-    public FruchtermanReingold(int seed)
+    private float k;
+    private float width;
+    private float height;
+
+    private GeometricRules GeometricRules { get; set; }
+
+    public FruchtermanReingold(int seed,GeometricRules currentRules )
     {
         rng = new Random(seed);
+        GeometricRules = currentRules;
+    
     }
 
-    private float RepulsionForce(float distance){
+    private float RepulsionForce(float distance)
+    {
         return k * k / distance;
     }
 
-    private float AttractionForce(float distance){
-        return distance * distance / k;
+    private float AttractionForce(float distance)
+    {
+        return distance * distance / k * 0.5f;
     }
 
     public Dictionary<RegionNode, Vector2> GenerateLayout(
         RegionGraphType graph,
         RegionNode center,
-        float width,
-        float height,
         int iterations = 500
-        )
+    )
     {
+
+        // -------------------------------------------------
+        // MAP PARAMETERS
+        // -------------------------------------------------
         int n = graph.Nodes.Count;
+        float aspectRatio = GeometricRules.AspectRatio;
+        float area = GeometricRules.Area;
+        width = MathF.Sqrt(area / aspectRatio);
+        height = width * aspectRatio;
 
-        // k = optimal distance between vertices
-        float area = width * height;
-        k = MathF.Sqrt(area / n);
+        // -------------------------------------------------
+        // FR PARAMETERS
+        // -------------------------------------------------
 
-        //center node is fixed in (0,0)
+        // Standard FR distance
+         k = MathF.Sqrt(area / n);
+
+
+        // Entropy controller
+        float temperature = k ;
+        float cooling = temperature / iterations;
+
+        // -------------------------------------------------
+        // INITIAL POSITIONS
+        // -------------------------------------------------
+
         Dictionary<RegionNode, Vector2> positions = new();
 
         foreach (RegionNode node in graph.Nodes.Values)
         {
             if (node == center)
             {
-            positions[node] = new Vector2(width/2,height/2);
-            continue;
-            }else{
-                positions[node] = new Vector2(
-                (float)rng.NextDouble() * width,
-                (float)rng.NextDouble() * height 
-            );
+                positions[node] = new Vector2(0,0);
+                continue;
             }
-            
+
+            positions[node] = new Vector2(
+                (float)rng.NextDouble() * width,
+                (float)rng.NextDouble() * height
+            );
         }
 
-        // entropy controller
-        float temperature = width / 10f;
-        float cooling = temperature / iterations;
+        // -------------------------------------------------
+        // FR ITERATIONS
+        // -------------------------------------------------
 
         for (int iteration = 0; iteration < iterations; iteration++)
         {
@@ -78,21 +104,18 @@ public class FruchtermanReingold
                     if (v == u)
                         continue;
 
-                    Vector2 delta =
-                        positions[v] - positions[u];
+                    Vector2 delta = positions[v] - positions[u];
 
                     float distance = delta.Length();
 
                     if (distance < 0.01f)
                         distance = 0.01f;
 
-                    Vector2 direction =
-                        delta / distance;
+                    Vector2 direction = delta / distance;
 
                     float force = RepulsionForce(distance);
 
-                    displacement[v] +=
-                        direction * force;
+                    displacement[v] += direction * force;
                 }
             }
 
@@ -107,21 +130,18 @@ public class FruchtermanReingold
                     if (v == center)
                         continue;
 
-                    Vector2 delta =
-                        positions[v] - positions[u];
+                    Vector2 delta = positions[v] - positions[u];
 
                     float distance = delta.Length();
 
                     if (distance < 0.01f)
                         distance = 0.01f;
 
-                    Vector2 direction =
-                        delta / distance;
+                    Vector2 direction = delta / distance;
 
                     float force = AttractionForce(distance);
 
-                    displacement[v] -=
-                        direction * force;
+                    displacement[v] -= direction * force;
                 }
             }
 
@@ -131,8 +151,7 @@ public class FruchtermanReingold
 
             foreach (RegionNode node in graph.Nodes.Values)
             {
-
-                 if (node == center)
+                if (node == center) 
                     continue;
 
                 Vector2 disp = displacement[node];
@@ -141,35 +160,26 @@ public class FruchtermanReingold
 
                 if (length > 0.01f)
                 {
-                    // limit movements
                     float limitedLength =
                         MathF.Min(length, temperature);
 
-                    disp =
-                        disp / length * limitedLength;
+                    disp = disp / length * limitedLength;
                 }
 
                 positions[node] += disp;
 
                 // -------------------------------------------------
-                // 4. BORDERS
+                // BORDERS
                 // -------------------------------------------------
 
-            //    positions[node] = new Vector2(
-            //         Math.Clamp(
-            //             positions[node].X,
-            //             -width / 2f,
-            //             width / 2f),
-
-            //         Math.Clamp(
-            //             positions[node].Y,
-            //             -height / 2f,
-            //             height / 2f)
-            //     );
+                positions[node] = new Vector2(
+                    Math.Clamp(positions[node].X, -width, width),
+                    Math.Clamp(positions[node].Y, -height, height)
+                );
             }
 
             // -------------------------------------------------
-            // 5. COOLING
+            // 4. COOLING
             // -------------------------------------------------
 
             temperature -= cooling;

@@ -25,6 +25,11 @@
         "Min": 800,
         "Max": 2700,
         "Weight": 0.8
+      },
+
+      "GeometricRules": {
+        "AspectRatio": 4,
+        "Area": 1600
       }
     },
 
@@ -33,8 +38,8 @@
       "Name": "RollingHills",
 
       "RegionRules": {
-        "MinRegions": 5,
-        "MaxRegions": 8
+        "MinRegions": 7,
+        "MaxRegions": 12
       },
 
       "ConnettivityRules": {
@@ -53,6 +58,10 @@
         "Min": 700,
         "Max": 2500,
         "Weight": 0.7
+      },
+      "GeometricRules": {
+        "AspectRatio": 1.5,
+        "Area": 1000
       }
     },
 
@@ -61,8 +70,8 @@
       "Name": "Plateau",
 
       "RegionRules": {
-        "MinRegions": 5,
-        "MaxRegions": 7
+        "MinRegions": 6,
+        "MaxRegions": 10
       },
 
       "ConnettivityRules": {
@@ -81,6 +90,10 @@
         "Min": 800,
         "Max": 2500,
         "Weight": 0.9
+      },
+      "GeometricRules": {
+        "AspectRatio": 1,
+        "Area": 1500
       }
     }
   ]

@@ -26,7 +26,7 @@ public class FruchtermanReingold
 
     private float RepulsionForce(float distance)
     {
-        return k * k / distance;
+        return k * k / (distance*distance);
     }
 
     private float AttractionForce(float distance)
@@ -48,7 +48,8 @@ public class FruchtermanReingold
         float aspectRatio = GeometricRules.AspectRatio;
         float area = GeometricRules.Area;
         width = MathF.Sqrt(area / aspectRatio);
-        height = width * aspectRatio;
+        height =  width * aspectRatio;
+
 
         // -------------------------------------------------
         // FR PARAMETERS

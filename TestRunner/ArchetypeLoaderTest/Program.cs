@@ -31,7 +31,7 @@ class Program
         );
 
 
-        graphInstance.GenerateGraph(instance,nodeLoader);
+        graphInstance.GenerateGraph(instance, nodeLoader);
 
 
         Console.WriteLine("==============================");

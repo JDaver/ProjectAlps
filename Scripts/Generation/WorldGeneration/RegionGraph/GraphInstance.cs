@@ -53,15 +53,11 @@ public class GraphInstance
         while(queue.Count > 0 && Graph.Nodes.Count < numberOfRegions)
         {
 
-        //extract node from Queue
         RegionNode current = queue.Dequeue();
-        // float currentDistanceTarget = current.Elevation;
-
-        //Link Calculus
+        
         int numberOfLinks =  CalculateNumberOfLinks(minLinks, maxLinks, branchingPreference);
 
         for( int j = 0; j < numberOfLinks; j++){
-            //Pick hightest score node 
             if(availableNodes.Count == 0)
                 break;
             if(Graph.Nodes.Count >= numberOfRegions)
@@ -392,4 +388,3 @@ private float CalculateClusterPenalty(
     }
 }
 }
-

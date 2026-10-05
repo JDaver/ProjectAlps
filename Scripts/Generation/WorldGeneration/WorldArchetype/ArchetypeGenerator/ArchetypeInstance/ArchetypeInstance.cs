@@ -20,8 +20,8 @@ public class ArchetypeInstance{
 
     public ArchetypeInstance(ArchetypeLoader collection,int seed){
         Random rng = new(seed);
-        //generate a number between 1 and 3
         int chosenArchetypeId = GetRandomInRange(0,collection.Types.Length - 1,rng);
+        // int chosenArchetypeId = 0;
         
         WorldArchetypeRules chosenArchetypeRule = collection.Types[chosenArchetypeId];
 

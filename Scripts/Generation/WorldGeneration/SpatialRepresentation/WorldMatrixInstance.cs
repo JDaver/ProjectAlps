@@ -4,6 +4,7 @@ using ProjectAlps.Generation.WorldGeneration.WorldArchetype.Instance;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 using System.Collections.Generic;
 using System.Numerics;
+using System;
 
 namespace ProjectAlps.Generation.WorldGeneration.WorldMatrix;
 public class WorldMatrixInstance
@@ -18,5 +19,8 @@ public class WorldMatrixInstance
         RegionNode centerNode = CurrentGraph.DistanceScore._head.Region;
 
         EuclideanWorld = LayoutModel.GenerateLayout(graph, centerNode);
+        SpaceValidation SpaceInstance = new SpaceValidation(seed, instance.Name);
+        SpaceInstance.ValidatePositions(EuclideanWorld);
+        WorldMatrixDefinition worldMatrix = new WorldMatrixDefinition(EuclideanWorld);
     }
 }

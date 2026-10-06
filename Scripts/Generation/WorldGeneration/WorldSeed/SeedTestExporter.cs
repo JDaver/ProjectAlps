@@ -1,6 +1,6 @@
 namespace ProjectAlps.Generation.WorldGeneration.SeedExporter;
 public static class SeedTestExporter{
-    public static readonly int Seed = 19;
+    public static readonly int Seed = 296559234;
 }
 
 //19  RollingHills

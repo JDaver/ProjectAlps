@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Numerics;
 using ProjectAlps.Generation.WorldGeneration.RegionNodes;
 
-public class WorldMatrixDefinition
+public class WorldMatrixDiscretization
 {
     public int[,] WorldMatrix {get; private set;}
-    private int width;
-    private int height;
+    public Dictionary<int,Vector2> keyValuePairs {get; private set;} = new();
+    public int width;
+    public int height;
 
-    static int PADDING = 5;
+    private static int PADDING = 5;
+    private static int RESOLUTION = 2;
+
     float north = 0f, south = 0f, west = 0f, east = 0f;
-    public WorldMatrixDefinition(Dictionary<RegionNode, Vector2> spaceInstance)
+    public WorldMatrixDiscretization(Dictionary<RegionNode, Vector2> spaceInstance)
     {
         CalculateSize(spaceInstance);
         WorldMatrix = new int[width,height];
@@ -25,7 +28,6 @@ public class WorldMatrixDefinition
             }
         }
         DiscretizePositions(spaceInstance);
-        PrintMatrix();
     }    
 
         private void CalculateSize(
@@ -44,8 +46,8 @@ public class WorldMatrixDefinition
             east = Math.Max(east, point.X);
         }
     
-        int contentWidth = (int)Math.Ceiling(east - west) + 1;
-        int contentHeight = (int)Math.Ceiling(north - south) + 1;
+        int contentWidth = (int)Math.Ceiling((east - west)* RESOLUTION) + 1;
+        int contentHeight = (int)Math.Ceiling((north - south)* RESOLUTION) + 1;
     
         width = contentWidth + PADDING * 2;
         height = contentHeight + PADDING * 2;
@@ -58,10 +60,14 @@ public class WorldMatrixDefinition
         {
             Vector2 point = node.Value;
 
-            int x = (int)Math.Round(point.X - west) + PADDING;
-            int y = (int)Math.Round(point.Y - south) + PADDING;
+            int x = (int)Math.Round((point.X - west)* RESOLUTION) + PADDING;
+            int y = (int)Math.Round((point.Y - south)* RESOLUTION )+ PADDING;
+
+            Vector2 newPointCoordinates = new Vector2(x,y);
 
             WorldMatrix[x, y] = node.Key.Id;
+
+            keyValuePairs.Add(node.Key.Id, newPointCoordinates);
         }
     }
 

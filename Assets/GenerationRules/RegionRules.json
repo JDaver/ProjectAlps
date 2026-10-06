@@ -10,8 +10,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 40,
-        "MaxExtent": 40,
+        "ExtentFactor": 2,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 900.0,
@@ -41,8 +40,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 20,
-        "MaxExtent": 25,
+        "ExtentFactor": 1,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 1100.0,
@@ -72,8 +70,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 20,
-        "MaxExtent": 30,
+        "ExtentFactor": 2,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 1200.0,
@@ -104,8 +101,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 40,
-        "MaxExtent": 50,
+        "ExtentFactor": 2,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 1500.0,
@@ -136,8 +132,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 20,
-        "MaxExtent": 30,
+        "ExtentFactor": 1,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 1700.0,
@@ -168,8 +163,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 10,
-        "MaxExtent": 20,
+        "ExtentFactor": 2,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 1900.0,
@@ -200,8 +194,7 @@
       },
 
       "GenerationRules": {
-        "MinExtent": 20,
-        "MaxExtent": 25,
+        "ExtentFactor": 2,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 2300.0,

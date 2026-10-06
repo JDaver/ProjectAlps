@@ -9,9 +9,13 @@ using System;
 namespace ProjectAlps.Generation.WorldGeneration.WorldMatrix;
 public class WorldMatrixInstance
 {
+    public WorldMatrixDiscretization WorldMatrix ;
+
     public Dictionary<RegionNode,Vector2> EuclideanWorld;
+    
     public FruchtermanReingold LayoutModel;
 
+    
     public WorldMatrixInstance(int seed, RegionGraphType graph,ArchetypeInstance instance){
         LayoutModel = new FruchtermanReingold(seed,instance.GeometricRules);
 
@@ -21,6 +25,8 @@ public class WorldMatrixInstance
         EuclideanWorld = LayoutModel.GenerateLayout(graph, centerNode);
         SpaceValidation SpaceInstance = new SpaceValidation(seed, instance.Name);
         SpaceInstance.ValidatePositions(EuclideanWorld);
-        WorldMatrixDefinition worldMatrix = new WorldMatrixDefinition(EuclideanWorld);
+        WorldMatrix = new WorldMatrixDiscretization(EuclideanWorld);
+        RegionFilling.FillingAlgo(WorldMatrix,graph);
+        WorldMatrix.PrintMatrix();
     }
 }

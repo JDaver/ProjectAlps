@@ -74,7 +74,8 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes;
                     nodeIdCounter++,
                     rules.RegionTypeId,
                     rules.Name,
-                    sampleAltitude
+                    sampleAltitude,
+                    rules.GenerationRules.ExtentFactor
                 );
 
 

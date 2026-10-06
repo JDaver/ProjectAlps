@@ -4,9 +4,7 @@ namespace ProjectAlps.Generation.WorldGeneration.RegionNodes.Rules
 {
     public class GenerationRules
     {
-        public int MinExtent { get; set; }
-
-        public int MaxExtent { get; set; }
+        public int ExtentFactor { get; set; }
 
         public ElevationRules Elevation { get; set; }
     }

@@ -84,7 +84,7 @@ The current development focuses on the early stages of the procedural generation
 * [x] World archetype definition
 * [x] Region rule definition
 * [x] Region graph generation
-* [ ] Graph → R² spatial representation
+* [x] Graph → R² spatial representation
 * [ ] Terrain heightmap generation
 * [ ] Biome generation
 * [ ] Environment generation

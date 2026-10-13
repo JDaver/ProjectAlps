@@ -10,7 +10,7 @@
       },
 
       "GenerationRules": {
-        "ExtentFactor": 2,
+        "ExtentFactor": 3,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 900.0,
@@ -70,7 +70,7 @@
       },
 
       "GenerationRules": {
-        "ExtentFactor": 2,
+        "ExtentFactor": 3,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 1200.0,
@@ -194,7 +194,7 @@
       },
 
       "GenerationRules": {
-        "ExtentFactor": 2,
+        "ExtentFactor": 1,
         "Elevation": {
           "DistributionType": "Normal",
           "Mean": 2300.0,

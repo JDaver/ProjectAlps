@@ -11,8 +11,8 @@ public class WorldMatrixDiscretization
     public int width;
     public int height;
 
-    private static int PADDING = 5;
-    private static int RESOLUTION = 2;
+    private static int PADDING = 10;
+    private static int RESOLUTION = 3;
 
     float north = 0f, south = 0f, west = 0f, east = 0f;
     public WorldMatrixDiscretization(Dictionary<RegionNode, Vector2> spaceInstance)

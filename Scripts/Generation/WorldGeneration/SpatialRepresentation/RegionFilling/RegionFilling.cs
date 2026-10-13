@@ -28,8 +28,6 @@ public class RegionFilling
             {
                 if (node.Value.Count == 0) continue;
 
-                int extentFactor =graph.Nodes[node.Key].ExtentFactor;
-                // int extentCounter = 0;
                 int currentId = graph.Nodes[node.Key].Id;
 
                 Vector2 currentCordinates = node.Value.Dequeue();

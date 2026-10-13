@@ -77,17 +77,23 @@ The resulting representation provides the spatial foundation required by the sub
 
 [Read more about Graph → R² Translation →](docs/graph-to-r2.md)
 
+### 5. Region Filling
+
+assigns grid cells to generated regions through a multi-source flood-fill algorithm, using queues and weighted expansion to control region growth.
+
+For implementation details, see [Region Filling Algorithm](docs/RegionFilling.md)
+
 ## Development Status
 
 The current development focuses on the early stages of the procedural generation pipeline:
 
-* [x] World archetype definition
-* [x] Region rule definition
-* [x] Region graph generation
-* [x] Graph → R² spatial representation
-* [ ] Terrain heightmap generation
-* [ ] Biome generation
-* [ ] Environment generation
-* [ ] Chunk and mesh generation
+- [x] World archetype definition
+- [x] Region rule definition
+- [x] Region graph generation
+- [x] Graph → R² spatial representation
+- [ ] Terrain heightmap generation
+- [ ] Biome generation
+- [ ] Environment generation
+- [ ] Chunk and mesh generation
 
 The project is developed in my spare time, so progress may be gradual. The goal is to progressively build a modular and deterministic procedural generation system while keeping the architecture flexible enough to support different world types.

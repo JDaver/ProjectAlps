@@ -27,14 +27,14 @@ The following images represent one example of output for each archetype.
 
 ### VerticalClimb
 
-![VerticalClimb output](docs/images/VerticalClimbRegionFillingEx.png)
+![VerticalClimb output](images/VerticalClimbRegionFillingEx.png)
 
 ### Plateau
 
-![Plateau output](docs/images/PlateauRegionFillingEx.png)
+![Plateau output](images/PlateauRegionFillingEx.png)
 
 ### RollingHills
 
-![RollingHills output](docs/images/RollingHillsRegionFillingEx.png)
+![RollingHills output](images/RollingHillsRegionFillingEx.png)
 
 > **Note:** These examples represent the current output of each archetype. The generation and region-filling implementations are still under development, so the results may change.

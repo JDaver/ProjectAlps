@@ -16,6 +16,7 @@ obj/
 *.csproj.user
 *.sln.DotSettings.user
 .vs/
+Project_alps.sln
 
 # IDE
 .vscode/settings.json
@@ -29,3 +30,4 @@ Thumbs.db
 
 # Prototype / temporary tests
 Scripts/Generation/TestMeshBuilder/
+

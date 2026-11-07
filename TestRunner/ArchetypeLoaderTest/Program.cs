@@ -74,7 +74,8 @@ class Program
         Console.WriteLine("EUCLIDEAN WORLD: ");
         Console.WriteLine("==============================");
 
-        WorldMatrixInstance CurrentWorld = new WorldMatrixInstance(seed,graphInstance.Graph,instance);
+        WorldMatrixInstance CurrentWorld = new 
+        (seed,graphInstance.Graph,instance);
         char Letter = (char)65;
 
 foreach (var pair in CurrentWorld.EuclideanWorld)

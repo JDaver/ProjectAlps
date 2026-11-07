@@ -26,7 +26,7 @@ public class WorldMatrixInstance
         SpaceValidation SpaceInstance = new SpaceValidation(seed, instance.Name);
         SpaceInstance.ValidatePositions(EuclideanWorld);
         WorldMatrix = new WorldMatrixDiscretization(EuclideanWorld);
-        RegionFilling.FillingAlgo(WorldMatrix,graph);
+        RegionFilling.FillingAlgo(seed, WorldMatrix, graph);
         WorldMatrix.PrintMatrix();
     }
 }
